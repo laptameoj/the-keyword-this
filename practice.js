@@ -2,18 +2,19 @@
   // 1) What is the purpose of the 'this keyword'?
 
       //Answer
-
+      // This is used to define the context for a method, function or valur of an oj
   // 2) What are the four rules that govern what the 'this keyword' is bound to and describe each?
 
       //Answer
-
+      //Explicit, Implicit, and window or global scope.
   // 3) What is the difference between call and apply?
 
       //Answer
-
+      // Very little.
   // 4) What does .bind do?
 
       //Answer
+      // Bind defines the context that the funciton's this opperates under.
 
 
 //Next Problem
@@ -21,9 +22,17 @@
 //Create an object called user which has the following properties.
   //username --> which is a string
   //email --> which is a string
-  //getUsername --> which is a function that returns the current object's username property. *Don't use 'user' instead use the 'this' keyword*
+  //getUsername --> which is a function that returns the current object's username property. *Don't use 'user'
+  //instead use the 'this' keyword*
 
     //Code Here
+    var user = {
+      username: 'Joseph',
+      email: 'j@email.com',
+      getUsername: function() {
+        return this.username;
+      }
+    }
 
 //Now, invoke the getUsername method and verify you got the username of the object and not anything else.
 
@@ -34,6 +43,17 @@
 // Write the function definitions which will make the following function invocations function properly.
 
   //Function Invocations Here
+function Car (manufacturer, make, year) {
+  this.manufacturer = manufacturer;
+  this.move = 0;
+  this.make = make;
+  this.year = year;
+  this.moveCar = function() {
+    this.move+=10;
+    return this.move;
+  }
+
+}
 
 var prius = new Car('Toyota', 'Prius', 2011);
 var mustang = new Car('Ford', 'Mustang', 2013);
@@ -65,12 +85,12 @@ var myUser = {
  email: 'iliketurtles@gmail.com'
 };
 
-var getMyUsername = function() {
+var getMyUser = function() {
  return this.username;
 };
 
-var userName = getMyUsername(); //Fix this
-
+var userName = getMyUser.call(myUser);
+alert(userName); //Fix this
 //Above you're given an object, a function, and a setTimeout invocation. After 5 seconds, what will the getUsername function return?
 //Note(no tests)
   //Answer Here
